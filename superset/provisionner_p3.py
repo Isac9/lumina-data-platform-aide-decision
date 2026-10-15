@@ -124,8 +124,8 @@ def creer_datasets(api):
 
 # ------------------------------------------------------------------ graphiques
 def grand_nombre(titre, metrique, fmt, filtres=()):
-    return {"viz_type": "big_number_total", "metric": metrique, "y_axis_format": fmt,
-            "adhoc_filters": list(filtres), "header_font_size": 0.4, "subheader_font_size": 0.15, "_titre": titre}
+    return {"viz_type": "big_number_total", "metric": metrique, "y_axis_format": "SMART_NUMBER" if fmt == ",.0f" else fmt,
+            "adhoc_filters": list(filtres), "header_font_size": 0.3, "subheader_font_size": 0.15, "_titre": titre}
 
 
 def courbe(titre, x, metriques, fmt, groupby=(), grain="P1M", filtres=()):
@@ -138,14 +138,14 @@ def courbe(titre, x, metriques, fmt, groupby=(), grain="P1M", filtres=()):
 def barres_categories(titre, x, metrique):
     return {"viz_type": "echarts_timeseries_bar", "x_axis": x, "metrics": [metrique], "groupby": [],
             "adhoc_filters": [], "row_limit": 100, "x_axis_sort": x, "x_axis_sort_asc": True,
-            "show_legend": False, "rich_tooltip": True, "show_value": True, "_titre": titre}
+            "show_legend": False, "rich_tooltip": True, "show_value": True, "xAxisLabelRotation": 45, "_titre": titre}
 
 
 def tableau(titre, colonnes, tri=None, decroissant=True, formats=None, filtres=(), lignes=1000):
     return {"viz_type": "table", "query_mode": "raw", "all_columns": colonnes,
             "order_by_cols": [json.dumps([tri, not decroissant])] if tri else [],
             "adhoc_filters": list(filtres), "row_limit": lignes, "server_page_length": 20,
-            "table_timestamp_format": "%d/%m/%Y",
+            "table_timestamp_format": "%d/%m/%Y", "show_cell_bars": False,
             "column_config": {c: {"d3NumberFormat": f} for c, f in (formats or {}).items()},
             "_titre": titre}
 

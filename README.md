@@ -64,3 +64,21 @@ docker compose up -d --build
 | Superset (tableaux de bord 1 à 5) | http://localhost:8088 | admin / admin |
 | Catalogue de données | http://localhost:8081 | (aucun) |
 | Airflow | http://localhost:8080 | admin / admin |
+
+## Captures d'écran
+
+**4. Aide à la décision** : prêts à risque, qualité du modèle (AUC), calibration, prévisions réel / échéancier / statistique et anomalies.
+
+![Aide à la décision](docs/images/aide_decision.png)
+
+**Les prêts à surveiller en priorité, avec les 3 raisons de chaque score**
+
+![Scores et raisons](docs/images/scores_raisons.png)
+
+**5. Qualité et gouvernance** : contrôles qualité historisés, fraîcheur, volumétrie, catalogue, dictionnaire des indicateurs et matrice des droits.
+
+![Qualité et gouvernance](docs/images/gouvernance.png)
+
+**Lignage de bout en bout** dans le catalogue de données.
+
+![Lignage](docs/images/lignage.png)

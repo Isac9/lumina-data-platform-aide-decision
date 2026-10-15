@@ -46,7 +46,9 @@ def main():
         tout = pd.concat([historique, nouveaux]).drop_duplicates(["date_execution", "projet", "controle"])
     except Exception:
         tout = nouveaux
-    ecrire_table(tout, "resultats_controles", schema="gouvernance", securite_pays=False)
+    # Gouvernance : lisible par la Direction seulement (pas par les lecteurs pays)
+    ecrire_table(tout, "resultats_controles", schema="gouvernance", securite_pays=False,
+                 lecteurs=["direction_groupe"])
     print(f"{len(nouveaux)} résultats de contrôles enregistrés.", flush=True)
 
 

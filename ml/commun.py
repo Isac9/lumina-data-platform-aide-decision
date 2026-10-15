@@ -19,15 +19,15 @@ def lire(sql):
         return pd.read_sql(text(sql), conn)
 
 
-def ecrire_table(df, nom, schema="ml", securite_pays=True):
+def ecrire_table(df, nom, schema="ml", securite_pays=True, lecteurs=LECTEURS):
     """Remplace la table, donne la lecture aux lecteurs et pose la règle
     "chaque pays ne voit que ses lignes" (si la table a une colonne code_entite)."""
     with moteur.begin() as conn:
         conn.execute(text(f"create schema if not exists {schema}"))
-        conn.execute(text(f"grant usage on schema {schema} to {', '.join(LECTEURS)}"))
+        conn.execute(text(f"grant usage on schema {schema} to {', '.join(lecteurs)}"))
     df.to_sql(nom, moteur, schema=schema, if_exists="replace", index=False)
     with moteur.begin() as conn:
-        conn.execute(text(f"grant select on {schema}.{nom} to {', '.join(LECTEURS)}"))
+        conn.execute(text(f"grant select on {schema}.{nom} to {', '.join(lecteurs)}"))
         if securite_pays and "code_entite" in df.columns:
             conn.execute(text(f"alter table {schema}.{nom} enable row level security"))
             conn.execute(text(
