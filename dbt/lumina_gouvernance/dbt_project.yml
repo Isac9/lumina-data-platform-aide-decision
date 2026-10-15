@@ -1,0 +1,25 @@
+name: lumina_gouvernance
+version: "1.0.0"
+profile: lumina_gouvernance
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+# Les tables de gouvernance sont réservées à la Direction (pas aux lecteurs pays)
+models:
+  lumina_gouvernance:
+    +schema: gouvernance
+    +materialized: table
+    +grants:
+      select: ["direction_groupe"]
+
+seeds:
+  lumina_gouvernance:
+    +schema: gouvernance
+    +grants:
+      select: ["direction_groupe"]
+
+on-run-end:
+  - "grant usage on schema gouvernance to direction_groupe"

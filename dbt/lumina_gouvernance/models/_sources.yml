@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: gouvernance
+    description: "Historique des contrôles qualité, rempli par ml/collecter_controles.py."
+    schema: gouvernance
+    tables:
+      - name: resultats_controles

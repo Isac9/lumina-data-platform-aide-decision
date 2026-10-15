@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Catalogue de données</title>
+<style>
+  :root { --fond: #f6f5f1; --carte: #ffffff; --texte: #1f2328; --doux: #59636e; --accent: #0b6e4f; --bord: #d8dee4; }
+  @media (prefers-color-scheme: dark) {
+    :root { --fond: #15181c; --carte: #1c2025; --texte: #e6e8eb; --doux: #9aa4af; --accent: #3fb68b; --bord: #30363d; }
+  }
+  body { margin: 0; background: var(--fond); color: var(--texte); font: 17px/1.6 system-ui, "Segoe UI", sans-serif; }
+  main { max-width: 860px; margin: 0 auto; padding: 40px 16px; }
+  h1 { margin-bottom: 4px; }
+  p.sous { color: var(--doux); margin-top: 0; }
+  .grille { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; }
+  a.carte { display: block; background: var(--carte); border: 1px solid var(--bord); border-radius: 12px;
+            padding: 20px; color: inherit; text-decoration: none; }
+  a.carte:hover { border-color: var(--accent); }
+  a.carte strong { color: var(--accent); font-size: 1.1rem; }
+  a.carte span { display: block; color: var(--doux); font-size: 0.95rem; margin-top: 6px; }
+  .note { margin-top: 32px; color: var(--doux); font-size: 0.95rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>📚 Catalogue de données de Lumina Énergie</h1>
+  <p class="sous">Toutes les tables, leurs colonnes, leurs descriptions, leurs tests et leur lignage (d'où vient chaque donnée).</p>
+  <div class="grille">
+    <a class="carte" href="entrepot/index.html"><strong>1. Entrepôt</strong><span>Sources brutes, nettoyage, modèle en étoile (projet 1)</span></a>
+    <a class="carte" href="reporting/index.html"><strong>2. Reporting</strong><span>Indicateurs de crédit : PAR, provisions, recouvrement (projet 2)</span></a>
+    <a class="carte" href="gouvernance/index.html"><strong>3. Gouvernance</strong><span>Qualité, fraîcheur, volumétrie, droits d'accès (projet 3)</span></a>
+  </div>
+  <p class="note">Mis à jour automatiquement chaque jour par le pipeline <code>pipeline_gouvernance_lumina</code>.
+  Dans chaque catalogue, clique sur l'icône bleue en bas à droite pour voir le <strong>graphe de lignage</strong>.</p>
+</main>
+</body>
+</html>

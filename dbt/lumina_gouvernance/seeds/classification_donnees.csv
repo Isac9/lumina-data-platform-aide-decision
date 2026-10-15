@@ -1,0 +1,27 @@
+nom_schema,nom_table,domaine,proprietaire_metier,responsable_technique,classification,donnees_personnelles,description
+marts,dim_client,Clients,Direction commerciale,Data engineer,Confidentiel,oui,Clients (nom et téléphone)
+marts,dim_agent,Commercial,Direction commerciale,Data engineer,Interne,oui,Agents commerciaux
+marts,dim_entite,Référentiel,Direction financière,Data engineer,Interne,non,Filiales du Groupe
+marts,dim_produit,Référentiel,Direction commerciale,Data engineer,Interne,non,Catalogue produits
+marts,dim_date,Référentiel,Data engineer,Data engineer,Interne,non,Calendrier
+marts,fact_prets,Crédit,Direction des risques,Data engineer,Confidentiel,non,Prêts et leur situation
+marts,fact_echeances,Crédit,Direction des risques,Data engineer,Confidentiel,non,Échéancier des prêts
+marts,fact_remboursements,Crédit,Direction du recouvrement,Data engineer,Confidentiel,non,Paiements reçus et rapprochement ERP
+marts,fact_ventes,Finance,Direction financière,Data engineer,Confidentiel,non,Ventes comptabilisées au plan Groupe
+reporting,dates_arrete,Référentiel,Data engineer,Data engineer,Interne,non,Dates d'arrêté du reporting
+reporting,fct_situation_prets,Crédit,Direction des risques,Data engineer,Confidentiel,non,Situation des prêts à chaque date d'arrêté
+reporting,kpi_par,Risque,Direction des risques,Data engineer,Confidentiel,non,PAR 30 à 120
+reporting,kpi_provisions,Risque,Direction financière,Data engineer,Confidentiel,non,Provisions par tranche
+reporting,kpi_roll_rates,Risque,Direction des risques,Data engineer,Confidentiel,non,Matrice de transition
+reporting,kpi_recouvrement,Recouvrement,Direction du recouvrement,Data engineer,Confidentiel,non,Taux de recouvrement
+reporting,kpi_commercial,Commercial,Direction commerciale,Data engineer,Interne,non,Ventes mensuelles
+reporting,kpi_agents,Commercial,Direction commerciale,Data engineer,Confidentiel,oui,Performance des agents
+reporting,rapport_institutionnel,Finance,Direction financière,Data engineer,Confidentiel,non,Reporting trimestriel
+reporting,regles_provisionnement,Risque,Direction financière,Data engineer,Interne,non,Barème de provisionnement
+ml,scores_risque,Risque,Direction des risques,Data scientist,Confidentiel,oui,Scores de risque par prêt
+ml,performance_modeles,Risque,Direction des risques,Data scientist,Interne,non,Performance des modèles
+ml,calibration_modele,Risque,Direction des risques,Data scientist,Interne,non,Calibration du modèle
+ml,importance_variables,Risque,Direction des risques,Data scientist,Interne,non,Poids des variables du modèle
+ml,prevision_encaissements,Finance,Direction financière,Data scientist,Confidentiel,non,Prévision des encaissements
+ml,backtest_previsions,Finance,Direction financière,Data scientist,Interne,non,Fiabilité des prévisions
+ml,anomalies,Contrôle interne,Contrôle interne,Data scientist,Confidentiel,oui,Anomalies à investiguer

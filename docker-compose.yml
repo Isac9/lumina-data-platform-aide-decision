@@ -1,0 +1,52 @@
+# =====================================================================
+#  Projet 3 - Aide à la décision (scoring, prévisions, anomalies)
+#             et gouvernance des données
+#
+#  Ce fichier COMPLÈTE ceux des projets 1 et 2 (voir le fichier .env).
+#  ⚠️ Les chemins partent du dossier du PROJET 1 (lu en premier) :
+#  c'est pour cela qu'ils commencent par ../projet3-aide-decision/
+# =====================================================================
+
+services:
+
+  # ---------------------------------------------------------------
+  # Airflow : nouvelle recette (on ajoute les outils de Machine Learning)
+  # et les pipelines du projet 3
+  # ---------------------------------------------------------------
+  airflow:
+    build: ../projet3-aide-decision/airflow
+    environment:
+      DWH_URI: "postgresql+psycopg2://lumina:lumina@dwh-db:5432/dwh"
+    volumes:
+      - ../projet3-aide-decision/airflow/dags:/opt/airflow/tous_les_dags/projet3
+      - ../projet3-aide-decision/ml:/opt/ml
+      - ../projet3-aide-decision/dbt:/opt/dbt_gouvernance
+      - ../projet3-aide-decision/catalogue:/opt/catalogue
+
+  # ---------------------------------------------------------------
+  # Catalogue de données (documentation dbt de tous les projets)
+  # Adresse : http://localhost:8081
+  # ---------------------------------------------------------------
+  catalogue:
+    image: nginx:1.27-alpine
+    container_name: lumina-catalogue
+    volumes:
+      - ../projet3-aide-decision/catalogue:/usr/share/nginx/html:ro
+    ports:
+      - "8081:80"
+
+  # ---------------------------------------------------------------
+  # Installation automatique des tableaux de bord 4 et 5 dans Superset
+  # ---------------------------------------------------------------
+  superset-init-p3:
+    image: lumina-superset:4.1.1
+    container_name: lumina-superset-init-p3
+    volumes:
+      - ../projet3-aide-decision/superset/provisionner_p3.py:/app/provisionner_p3.py:ro
+    command: ["python", "/app/provisionner_p3.py"]
+    restart: "no"
+    depends_on:
+      superset:
+        condition: service_healthy
+      superset-init:
+        condition: service_completed_successfully

@@ -1,0 +1,8 @@
+# Catalogue généré automatiquement (on garde seulement la page d'accueil)
+catalogue/*/
+# Fichiers techniques de dbt et Python
+dbt/lumina_gouvernance/target/
+dbt/lumina_gouvernance/logs/
+.user.yml
+__pycache__/
+*.pyc

@@ -1,0 +1,12 @@
+lumina_gouvernance:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: "{{ env_var('DWH_HOTE', 'localhost') }}"
+      port: "{{ env_var('DWH_PORT', '5434') | as_number }}"
+      user: lumina
+      password: lumina
+      dbname: dwh
+      schema: gouvernance
+      threads: 4

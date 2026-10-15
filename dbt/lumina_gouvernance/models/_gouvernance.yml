@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: kpi_qualite
+    description: "Taux de réussite des contrôles qualité, par exécution et par projet."
+  - name: controles_derniere_execution
+    description: "Détail des contrôles de la dernière exécution."
+  - name: fraicheur_sources
+    description: "Âge du dernier chargement de chaque table brute (alerte au-delà de 26 h)."
+    columns:
+      - name: statut
+        tests:
+          - accepted_values:
+              values: ["✅ À jour"]
+              config:
+                severity: warn
+  - name: volumetrie
+    description: "Nombre exact de lignes par table."
+  - name: volumetrie_historique
+    description: "Historique quotidien de la volumétrie."
+  - name: matrice_droits
+    description: "Qui peut lire quelle table, et avec quel filtre de lignes."
+  - name: catalogue_tables
+    description: "Catalogue : propriétaire, classification, données personnelles et volume de chaque table."
+    columns:
+      - name: classification
+        tests:
+          - accepted_values:
+              values: ["Interne", "Confidentiel"]
+              config:
+                severity: warn
+
+seeds:
+  - name: dictionnaire_indicateurs
+    description: "Dictionnaire officiel des indicateurs."
+    columns:
+      - name: code_indicateur
+        tests: [unique, not_null]
+  - name: classification_donnees
+    description: "Propriétaire et niveau de confidentialité de chaque table."

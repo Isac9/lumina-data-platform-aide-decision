@@ -1,0 +1,14 @@
+code_indicateur,indicateur,definition,formule,table_source,proprietaire,frequence,unite,seuil_alerte
+ENCOURS,Encours,Reste à rembourser sur les prêts actifs,montant financé - total payé à la date d'arrêté,reporting.kpi_par,Direction financière,Quotidienne,FCFA,
+PAR30,PAR 30,Part de l'encours portée par des prêts en retard de plus de 30 jours,somme encours (retard > 30 j) / somme encours,reporting.kpi_par,Direction des risques,Quotidienne,%,> 10 %
+PAR60,PAR 60,Part de l'encours en retard de plus de 60 jours,somme encours (retard > 60 j) / somme encours,reporting.kpi_par,Direction des risques,Quotidienne,%,> 7 %
+PAR90,PAR 90,Part de l'encours en retard de plus de 90 jours,somme encours (retard > 90 j) / somme encours,reporting.kpi_par,Direction des risques,Quotidienne,%,> 5 %
+PAR120,PAR 120,Part de l'encours en retard de plus de 120 jours,somme encours (retard > 120 j) / somme encours,reporting.kpi_par,Direction des risques,Quotidienne,%,> 4 %
+PROVISIONS,Provisions,Montant mis de côté pour couvrir les pertes probables,encours x taux du barème de la tranche de retard,reporting.kpi_provisions,Direction financière,Mensuelle,FCFA,
+TAUX_PROV,Taux de provisionnement,Couverture du portefeuille par les provisions,somme provisions / somme encours,reporting.rapport_institutionnel,Direction financière,Trimestrielle,%,
+RECOUVREMENT,Taux de recouvrement,Capacité à encaisser les mensualités dues,encaissé du mois / dû du mois,reporting.kpi_recouvrement,Direction du recouvrement,Mensuelle,%,< 85 %
+MOBILE_MONEY,Part mobile money,Poids des paiements digitaux,encaissé par mobile money / encaissé total,reporting.kpi_recouvrement,Direction commerciale,Mensuelle,%,
+PAR30_AGENT,PAR 30 par agent,Qualité du portefeuille vendu par un agent,somme encours (retard > 30 j) / somme encours de l'agent,reporting.kpi_agents,Direction commerciale,Quotidienne,%,> 15 %
+PD_3M,Probabilité de passage en PAR 30,Probabilité qu'un prêt sain dépasse 30 jours de retard dans les 3 mois,régression logistique (voir fiche modèle),ml.scores_risque,Direction des risques,Quotidienne,%,> 40 % (classe E)
+PREV_ENCAISSEMENTS,Prévision des encaissements,Encaissements attendus sur les 3 prochains mois,échéancier x taux de recouvrement ; modèle ETS,ml.prevision_encaissements,Direction financière,Quotidienne,FCFA,
+TAUX_CONTROLES,Taux de réussite des contrôles qualité,Part des contrôles qualité dbt réussis à la dernière exécution,contrôles réussis / contrôles exécutés,gouvernance.kpi_qualite,Responsable data,Quotidienne,%,< 100 %
